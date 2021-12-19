@@ -31,7 +31,10 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+#undef TIM2_PERIOD
 #define TIM2_PERIOD 16-1
+// 64 MHz timer -> count to 16 = 4 MHz updates -> toggle on match -> 2 MHz signal
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -107,8 +110,8 @@ int main(void)
   // if a   set bit is set, the GPIO port will be set HIGH
   pixelclock[ 0] = 0x00000001;  // set SI signal on 1st clock edge
   pixelclock[ 2] = 0x00010000;  // reset SI signal on 3rd clock edge
-  pixelclock[ 8] = 0x00000002;  // set the ESH signal high
-  pixelclock[12] = 0x00020000;  // set the ESH signal low
+  pixelclock[ 9] = 0x00000002;  // set the ESH signal high
+  pixelclock[13] = 0x00020000;  // set the ESH signal low
 
   // DMA, circular memory-to-peripheral mode, full word (32 bit) transfer
   HAL_DMA_Start(&hdma_tim2_up,  (uint32_t)pixelclock, (uint32_t)&(GPIOC->BSRR), 16);
@@ -191,7 +194,7 @@ static void MX_TIM2_Init(void)
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim2.Init.Period = TIM2_PERIOD;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-  htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
   if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
   {
     Error_Handler();
