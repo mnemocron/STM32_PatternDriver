@@ -1,7 +1,11 @@
 # STM32_PatternDriver
-STM32F1 (64MHz) produces a repeating 2MHz bit pattern on multiple GPIOs (TIM, DMA, GPIO)
-
+STM32F1 (64MHz) produces a repeating 2MHz bit pattern on multiple GPIOs (TIM, DMA, GPIO) 
 Project for STM32f103rb Nucleo-64 board clocked at 64 MHz
+
+---
+
+> **[youtube video](https://www.youtube.com/watch?v=8z-pJSTi7ME)**
+
 
 ### Case Study: Pixel Clock and Shutter Action for Linear Image Sensor
 
